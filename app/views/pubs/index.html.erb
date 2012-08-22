@@ -1,4 +1,4 @@
-<%- model_class = Trip -%>
+<%- model_class = Pub -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
@@ -7,25 +7,21 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:date) %></th>
-      <th><%= model_class.human_attribute_name(:pub) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
-    <% @trips.each do |trip| %>
+    <% @pubs.each do |pub| %>
       <tr>
-        <td><%= link_to trip.id, trip_path(trip) %></td>
-        <td><%= trip.name %></td>
-        <td><%= trip.date %></td>
-        <td><%= trip.pub.name %></td>
-        <td><%=l trip.created_at %></td>
+        <td><%= link_to pub.id, pub_path(pub) %></td>
+        <td><%= pub.name %></td>
+        <td><%=l pub.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_trip_path(trip), :class => 'btn btn-mini' %>
+                      edit_pub_path(pub), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      trip_path(trip),
+                      pub_path(pub),
                       :method => :delete,
                       :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
                       :class => 'btn btn-mini btn-danger' %>
@@ -36,5 +32,5 @@
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_trip_path,
+            new_pub_path,
             :class => 'btn btn-primary' %>

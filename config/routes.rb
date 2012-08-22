@@ -1,4 +1,6 @@
 Pubtrip::Application.routes.draw do
+  resources :pubs
+
   resources :trips
 
   # The priority is based upon order of creation:

@@ -11,6 +11,12 @@
       <%= f.date_select :date, :class => 'date_select' %>
     </div>
   </div>
+  <div class="control-group">
+    <%= f.label :pub_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :pub_id, :class => 'text-field' %>
+    </div>
+  </div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
