@@ -1,2 +1,33 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="hero-unit">
+	<h1>Hello!</h1>
+	<p>
+		Welcome to Pubtrip. Take a look around, join in on a trip or organise your own!
+	</p>
+	<p>
+		<%= link_to("Organise a Pubtrip", 
+					new_trip_path, 
+					:class => "btn btn-primary btn-large") %>
+	</p>
+</div>
+<% if @trips.empty? %>
+	<p class="lead">Sorry, there's no trips planned right now. Maybe you should organise one?</p>
+<% else %>
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th>What?</th>
+	      <th>Where?</th>
+	      <th>When?</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <% @trips.each do |trip| %>
+	      <tr>
+	        <td><%= link_to trip.name, trip_path(trip) %></td>
+	        <td><%= trip.pub.name %></td>
+	        <td><%= trip.date %></td>
+	      </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+<% end %>
