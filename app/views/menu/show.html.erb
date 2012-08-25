@@ -1,0 +1,29 @@
+<div class="page-header">
+	<h1><%= "#{@pub.name.possessive}"%> Menu</h1>
+</div>
+
+<% @pub.menu_groups.each do |g| %>
+	<div class="well well-small span9">
+		<div class="heading">
+			<h2>
+				<a data-toggle="collapse" data-target="#<%= "group#{g.id}" %>">
+					<%= g.name %>
+				</a>
+			</h2>
+		</div>
+		<div id="<%= "group#{g.id}" %>" class="collapse in">
+			<p class="lead"><%= g.description %></p>
+			<table class="table table-striped">
+				<tbody>
+					<% g.menu_items.each do |i| %>
+						<tr>
+							<td style="width: 25%"><strong><%= i.name %></strong></td>
+							<td><%= i.description %></td>
+							<td style="width: 10%; text-align: right"><strong><%= number_to_currency i.price, :unit => "&pound;" %></strong></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+<% end %>
