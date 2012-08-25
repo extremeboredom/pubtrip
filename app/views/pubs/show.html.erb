@@ -1,12 +1,30 @@
 <%- model_class = Pub -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1>
+    <%= @pub.name %>
+    <% unless @pub.menu_groups.empty? %>
+      <small><%= link_to "View the menu", menu_url(@pub) %></small>
+    <% end %>
+  </h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @pub.name %></dd>
-</dl>
+<p class="lead">
+  <% if @pub.trips.empty? %>
+    There are no upcoming trips arranged to this pub right now.
+  <% else %>
+    Upcoming trips to <%= @pub.name %>
+    <table class="table table-striped">
+      <tbody>
+        <% @pub.trips.each do |t| %>
+          <tr>
+              <td><%= t.name %></td>
+              <td><%= t.date %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</p>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
