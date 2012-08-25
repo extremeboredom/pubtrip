@@ -4,7 +4,7 @@ class CreateMenuItems < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.decimal :price
-      t.references :pub
+      t.references :menu_group
 
       t.timestamps
     end
