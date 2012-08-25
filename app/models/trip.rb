@@ -5,4 +5,6 @@ class Trip < ActiveRecord::Base
   validates :name, :presence => true
   validates :date, :presence => true
   validates :pub, :presence => true
+
+  scope :upcoming, lambda { where("date >= ?", Date.today).order("date") }
 end

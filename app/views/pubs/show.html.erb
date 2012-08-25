@@ -9,13 +9,13 @@
 </div>
 
 <p class="lead">
-  <% if @pub.trips.empty? %>
+  <% if @pub.trips.upcoming.empty? %>
     There are no upcoming trips arranged to this pub right now.
   <% else %>
     Upcoming trips to <%= @pub.name %>
     <table class="table table-striped">
       <tbody>
-        <% @pub.trips.each do |t| %>
+        <% @pub.trips.upcoming.each do |t| %>
           <tr>
               <td><%= t.name %></td>
               <td><%= t.date %></td>
