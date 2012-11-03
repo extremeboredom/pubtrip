@@ -1,6 +1,7 @@
 Pubtrip::Application.routes.draw do
 
 
+  resources :users
   resources :pubs
   match 'pubs/:id/menu' => 'menu#show', :as => :menu
 
