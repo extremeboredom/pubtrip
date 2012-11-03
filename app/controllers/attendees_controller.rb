@@ -1,4 +1,6 @@
 class AttendeesController < ApplicationController
+  before_filter :require_login
+
   def create
     @attendee = current_user.attendees.create()
     @attendee.trip_id = params[:trip_id]
