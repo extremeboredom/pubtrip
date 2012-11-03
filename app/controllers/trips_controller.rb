@@ -1,4 +1,7 @@
 class TripsController < ApplicationController
+
+  before_filter :require_login, :except => [:show]
+
   # GET /trips
   # GET /trips.json
   def index

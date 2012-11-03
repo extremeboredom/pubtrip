@@ -1,4 +1,7 @@
 class PubsController < ApplicationController
+
+  before_filter :require_login, :except => [:show, :index]
+
   # GET /pubs
   # GET /pubs.json
   def index
