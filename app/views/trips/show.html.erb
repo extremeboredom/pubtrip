@@ -16,6 +16,15 @@
   <% @trip.attendees.each do |attendee| %>
     <tr>
       <td><%= attendee.user.email %></td>
+      <td>
+        <% if attendee.user == current_user %>
+          <%= link_to 'Stop Attending', 
+                      trip_attendee_path(@trip, attendee),
+                      :method => :delete,
+                      :confirm => 'Are you sure?',
+                      :class => 'btn btn-danger' %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
 </table>

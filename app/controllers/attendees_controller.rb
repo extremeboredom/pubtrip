@@ -11,4 +11,16 @@ class AttendeesController < ApplicationController
       redirect_to @attendee.trip, notice: "An error occurred when trying to attend this trip."
     end
   end
+
+  def destroy
+    @attendee = Attendee.find(params[:id])
+
+    if current_user.attendees.include? @attendee
+      @attendee.destroy
+    end
+
+    respond_to do |format|
+      format.html { redirect_to trip_url(params[:trip_id])}
+    end
+  end
 end
