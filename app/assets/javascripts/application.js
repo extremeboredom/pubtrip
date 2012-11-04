@@ -15,8 +15,16 @@
 //= require twitter/bootstrap
 //= require_tree .
 //= require bootstrap-datepicker
+//= require bootstrap-timepicker
+
 $(function (){
   $('.datepicker').datepicker({
     format: 'dd/mm/yyyy'
+  });
+  $('.timepicker').timepicker({
+    showInputs: false,
+    disableFocus: true,
+    minuteStep: 1,
+    showMeridian: false
   });
 });
