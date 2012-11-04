@@ -21,10 +21,14 @@ $(function (){
   $('.datepicker').datepicker({
     format: 'dd/mm/yyyy'
   });
-  $('.timepicker').timepicker({
-    showInputs: false,
-    disableFocus: true,
-    minuteStep: 1,
-    showMeridian: false
+  $('.timepicker').each(function () {
+    var theInput = $(this);
+    theInput.timepicker({
+      showInputs: false,
+      disableFocus: true,
+      minuteStep: 1,
+      showMeridian: false,
+      defaultTime: theInput.attr('value')
+    })
   });
 });
