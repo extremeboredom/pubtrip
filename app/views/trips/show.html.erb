@@ -1,33 +1,42 @@
 <%- model_class = Trip -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1><%= @trip.name %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @trip.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:date) %>:</strong></dt>
-  <dd><%= @trip.date %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:pub) %>:</strong></dt>
-  <dd><%= @trip.pub.name %></dd>
-</dl>
-
-<table class="table">
-  <% @trip.attendees.each do |attendee| %>
-    <tr>
-      <td><%= attendee.user.email %></td>
-      <td>
-        <% if attendee.user == current_user %>
-          <%= link_to 'Stop Attending', 
-                      trip_attendee_path(@trip, attendee),
-                      :method => :delete,
-                      :confirm => 'Are you sure?',
-                      :class => 'btn btn-danger' %>
+<div class="row">
+  <div class="span4">
+    <p class="lead"><%= @trip.pub.name %></p>
+  </div>
+  <div class="span4 offset2">
+    <p class="lead pull-right"><%= @trip.date.strftime '%d/%m/%Y %H:%M' %></p>
+  </div>
+</div>
+<div class="row">
+  <div class="span10">
+    <% if @trip.attendees.empty? %>
+      <p class="lead">Looks like no-one is going</p>
+    <% else %>
+      <table class="table">
+        <% @trip.attendees.each do |attendee| %>
+          <tr>
+            <td><%= attendee.user.email %></td>
+            <td style="text-align: right">
+              <% if attendee.user == current_user %>
+                <%= link_to 'Stop Attending', 
+                            trip_attendee_path(@trip, attendee),
+                            :method => :delete,
+                            :confirm => 'Are you sure?',
+                            :class => 'btn btn-danger btn-small' %>
+              <% end %>
+            </td>
+          </tr>
         <% end %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+      </table>
+      <% end %>
+  </div>
+</div>
+
+
 
 <div class="form-actions">
   <% unless @trip.users.include? current_user %>
