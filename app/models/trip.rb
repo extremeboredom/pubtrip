@@ -3,6 +3,7 @@ class Trip < ActiveRecord::Base
   attr_accessor :date_date, :date_time
 
   belongs_to :pub
+  belongs_to :organiser, :class_name => "User", :foreign_key => "user_id"
   has_many :attendees
   has_many :users, :through => :attendees
 
