@@ -13,21 +13,33 @@
     <% if @trip.attendees.empty? %>
       <p class="lead">Looks like no-one is going</p>
     <% else %>
-      <table class="table">
-        <% @trip.attendees.each do |attendee| %>
+      <table class="table table-striped">
+        <thead>
           <tr>
-            <td><%= attendee.user.email %></td>
-            <td style="text-align: right">
-              <% if attendee.user == current_user %>
-                <%= link_to 'Stop Attending', 
-                            trip_attendee_path(@trip, attendee),
-                            :method => :delete,
-                            :confirm => 'Are you sure?',
-                            :class => 'btn btn-danger btn-small' %>
-              <% end %>
-            </td>
+            <th>Attendees</th>
           </tr>
-        <% end %>
+        </thead>
+        <tbody>
+          <% @trip.attendees.each do |attendee| %>
+            <tr>
+              <td>
+                <%= attendee.user.email %>
+                <% if attendee.user == @trip.organiser %>
+                  <span class="label label-info">Organiser</span>
+                <% end %>
+              </td>
+              <td style="text-align: right">
+                <% if attendee.user == current_user %>
+                  <%= link_to 'Stop Attending', 
+                              trip_attendee_path(@trip, attendee),
+                              :method => :delete,
+                              :confirm => 'Are you sure?',
+                              :class => 'btn btn-danger btn-mini' %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        <tbody>
       </table>
       <% end %>
   </div>
