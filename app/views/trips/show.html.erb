@@ -17,6 +17,14 @@
         <thead>
           <tr>
             <th>Attendees</th>
+            <% unless current_user.attending? @trip %>
+              <th>
+                <%= link_to 'Attend', 
+                              trip_attendees_path(@trip),
+                              :method => :post,
+                              :class => 'btn btn-success btn-mini pull-right' %>
+              </th>
+            <% end %>
           </tr>
         </thead>
         <tbody>
@@ -48,12 +56,6 @@
 
 
 <div class="form-actions">
-  <% unless @trip.users.include? current_user %>
-    <%= link_to 'Attend', 
-                trip_attendees_path(@trip), 
-                :method => :post, 
-                :class => 'btn' %>
-  <% end %>
   <%= link_to t('.back', :default => t("helpers.links.back")),
               trips_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
