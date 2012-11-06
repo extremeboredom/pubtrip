@@ -5,12 +5,23 @@ class User < ActiveRecord::Base
   has_many :organised_trips, :class_name => "Trip"
   has_many :trips, :through  => :attendees
   
-  attr_accessible :email, :password, :password_confirmation, :remember_me_token
+  attr_accessible :first_name,
+                  :last_name,
+                  :email,
+                  :password,
+                  :password_confirmation,
+                  :remember_me_token
 
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
+  validates_presence_of :first_name
+  validates_presence_of :last_name
   validates_presence_of :email
   validates_uniqueness_of :email
+
+  def name
+    "#{self.first_name} #{self.last_name}"
+  end
 
   def organising?(trip)
     trip.organiser == self
