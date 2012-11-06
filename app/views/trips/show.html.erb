@@ -31,7 +31,7 @@
           <% @trip.attendees.each do |attendee| %>
             <tr>
               <td>
-                <%= attendee.user.email %>
+                <%= attendee.user.name %>
                 <% if attendee.user.organising? @trip %>
                   <span class="label label-info">Organiser</span>
                 <% end %>
