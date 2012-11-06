@@ -1,16 +1,13 @@
 <%- model_class = Trip -%>
 <div class="page-header">
-  <h1><%= @trip.name %></h1>
+  <h1>
+    <%= @trip.name %>
+    <small>
+      <%= "#{@trip.date.strftime '%d/%m/%Y %H:%M'} at #{@trip.pub.name}" %>
+    </small>
+  </h1>
 </div>
 
-<div class="row">
-  <div class="span4">
-    <p class="lead"><%= @trip.pub.name %></p>
-  </div>
-  <div class="span4 offset2">
-    <p class="lead pull-right"><%= @trip.date.strftime '%d/%m/%Y %H:%M' %></p>
-  </div>
-</div>
 <div class="row">
   <div class="span10">
     <% if @trip.attendees.empty? %>
