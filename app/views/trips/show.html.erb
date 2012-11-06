@@ -32,7 +32,7 @@
             <tr>
               <td>
                 <%= attendee.user.email %>
-                <% if attendee.user == @trip.organiser %>
+                <% if attendee.user.organising? @trip %>
                   <span class="label label-info">Organiser</span>
                 <% end %>
               </td>
