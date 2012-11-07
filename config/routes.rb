@@ -10,10 +10,10 @@ Pubtrip::Application.routes.draw do
   match 'pubs/:id/menu' => 'menu#show', :as => :menu
 
   resources :trips do
-     resources :attendees, only: [:create, :destroy]
+    resources :attendees, only: [:create, :destroy] do 
+      resources :orders
+    end
   end
-
-  resources :orders
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -38,9 +38,9 @@
               </td>
               <td>
                 <% if attendee.order %>
-                  <%= link_to 'View Order', order_path(attendee.order) %>
+                  <%= link_to 'View Order', trip_attendee_order_path(@trip, attendee, attendee.order) %>
                 <% elsif attendee.user == current_user %>
-                  <%= link_to 'Place an Order', new_order_path %>
+                  <%= link_to 'Place an Order', new_trip_attendee_order_path(@trip, attendee) %>
                 <% end %>
               </td>
               <td style="text-align: right">
