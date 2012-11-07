@@ -18,6 +18,6 @@
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                orders_path, :class => 'btn' %>
+              trip_path(@order.attendee.trip), :class => 'btn' %>
   </div>
 <% end %>
