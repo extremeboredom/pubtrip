@@ -11,7 +11,7 @@ Pubtrip::Application.routes.draw do
 
   resources :trips do
     resources :attendees, only: [:create, :destroy] do 
-      resources :orders
+      resources :orders, except: :index
     end
   end
 
