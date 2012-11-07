@@ -10,12 +10,14 @@
   <dd><%= @order.notes %></dd>
 </dl>
 
-<div class="form-actions">
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_trip_attendee_order_path(@order.attendee.trip, @order.attendee, @order), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              trip_attendee_order_path(@order.attendee.trip, @order.attendee, @order),
-              :method => 'delete',
-              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-              :class => 'btn btn-danger' %>
-</div>
+<% if @order.attendee.user == current_user %>
+  <div class="form-actions">
+    <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                edit_trip_attendee_order_path(@order.attendee.trip, @order.attendee, @order), :class => 'btn' %>
+    <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                trip_attendee_order_path(@order.attendee.trip, @order.attendee, @order),
+                :method => 'delete',
+                :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                :class => 'btn btn-danger' %>
+  </div>
+<% end %>
