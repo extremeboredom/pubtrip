@@ -36,6 +36,13 @@
                   <span class="label label-info">Organiser</span>
                 <% end %>
               </td>
+              <td>
+                <% if attendee.order %>
+                  <%= link_to 'View Order', order_path(attendee.order) %>
+                <% elsif attendee.user == current_user %>
+                  <%= link_to 'Place an Order', new_order_path %>
+                <% end %>
+              </td>
               <td style="text-align: right">
                 <% if attendee.user == current_user %>
                   <%= link_to 'Stop Attending', 
