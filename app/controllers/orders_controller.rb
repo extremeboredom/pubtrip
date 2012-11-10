@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_filter :require_login
+
   def show
     @order = Order.find(params[:id])
 
@@ -9,7 +11,7 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @order.attendee = Attendee.find(params[:attendee_id])
+    @order.attendee = current_attendee(params[:trip_id])
 
     respond_to do |format|
       format.html
@@ -22,11 +24,11 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(params[:order])
-    @order.attendee = Attendee.find(params[:attendee_id])
+    @order.attendee = current_attendee(params[:trip_id])
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to [@order.attendee.trip, @order.attendee, @order], notice: 'Your order has been accepted' }
+        format.html { redirect_to [@order.attendee.trip, @order], notice: 'Your order has been accepted' }
       else
         format.html { render action: 'new' }
       end
@@ -38,7 +40,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.update_attributes(params[:order])
-        format.html { redirect_to [@order.attendee.trip, @order.attendee, @order], notice: 'Your order has been updated' }
+        format.html { redirect_to [@order.attendee.trip, @order], notice: 'Your order has been updated' }
       else
         format.html { render action: 'edit' }
       end
@@ -55,5 +57,9 @@ class OrdersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to trip }
     end
+  end
+
+  def current_attendee(trip_id)
+    Attendee.where(trip_id: trip_id, user_id: current_user).first
   end
 end
