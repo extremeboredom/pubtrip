@@ -59,7 +59,7 @@
               <%= "#{@trip.attendees.count} #{'attendee'.pluralize(@trip.attendees.count)}" %>
             </td>
             <td>
-              <%= "#{number_of_orders @trip} #{'order'.pluralize(number_of_orders @trip)}" %>
+              <%= link_to "#{number_of_orders @trip} #{'order'.pluralize(number_of_orders @trip)}", trip_orders_path(@trip) %>
             </td>
             <td>
             </td>

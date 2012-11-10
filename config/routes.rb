@@ -11,7 +11,7 @@ Pubtrip::Application.routes.draw do
 
   resources :trips do
     resources :attendees, only: [:create, :destroy]
-    resources :orders, except: :index
+    resources :orders
   end
 
   # The priority is based upon order of creation:

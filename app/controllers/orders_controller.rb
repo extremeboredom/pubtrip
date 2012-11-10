@@ -1,6 +1,14 @@
 class OrdersController < ApplicationController
   before_filter :require_login
 
+  def index
+    @orders = Order.joins(:attendee).where(:attendees => {trip_id: params[:trip_id]})
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def show
     @order = Order.find(params[:id])
 

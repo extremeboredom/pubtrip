@@ -1,0 +1,16 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Order</th>
+      <th>Person</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.notes %></td>
+        <td><%= order.attendee.user.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
