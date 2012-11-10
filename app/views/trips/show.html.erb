@@ -54,6 +54,15 @@
               </td>
             </tr>
           <% end %>
+          <tr>
+            <td>
+              <%= "#{@trip.attendees.count} #{'attendee'.pluralize(@trip.attendees.count)}" %>
+            </td>
+            <td>
+              <%= "#{number_of_orders @trip} #{'order'.pluralize(number_of_orders @trip)}" %>
+            </td>
+            <td>
+            </td>
         <tbody>
       </table>
       <% end %>
