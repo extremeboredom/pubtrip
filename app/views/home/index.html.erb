@@ -11,35 +11,4 @@
 </div>
 <h2>Upcoming Pub Trips</h2>
 <hr />
-<% if @trips.empty? %>
-	<p class="lead">Sorry, there's no trips planned right now. Maybe you should organise one?</p>
-<% else %>
-	<table class="table table-striped">
-	  <thead>
-	    <tr>
-	      <th>Why?</th>
-	      <th>Where?</th>
-	      <th>When?</th>
-	      <th>Who?</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <% @trips.each do |trip| %>
-	      <tr>
-	        <td>
-	        	<%= link_to trip.name, trip_path(trip) %>
-	        </td>
-	        <td>
-	        	<%= trip.pub.name %>
-	        </td>
-	        <td>
-	        	<%= distance_of_time_in_words_to_now trip.date %>
-	        </td>
-	        <td>
-	        	<%= "#{trip.attendees.count} #{'person'.pluralize(trip.attendees.count)}" %>
-	        </td>
-	      </tr>
-	    <% end %>
-	  </tbody>
-	</table>
-<% end %>
+<%= render 'trips/list' %>
