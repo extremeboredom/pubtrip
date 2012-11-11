@@ -3,7 +3,7 @@
   <h1>
     <%= @trip.name %>
     <small>
-      <%= "#{@trip.date.strftime '%d/%m/%Y %H:%M'} at #{@trip.pub.name}" %>
+      <%= trip_title @trip %>
     </small>
   </h1>
 </div>
