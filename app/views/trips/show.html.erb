@@ -39,7 +39,7 @@
               <td>
                 <% if attendee.order %>
                   <%= link_to 'View Order', trip_order_path(@trip, attendee.order) %>
-                <% elsif attendee.user == current_user %>
+                <% elsif orders_allowed?(@trip) && attendee.user == current_user %>
                   <%= link_to 'Place an Order', new_trip_order_path(@trip) %>
                 <% end %>
               </td>

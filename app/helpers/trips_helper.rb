@@ -11,5 +11,12 @@ module TripsHelper
 
       title << " (orders by #{trip.order_cutoff.strftime(day_format_string + '%H:%M')})"
     end
+    return title
+  end
+
+  def orders_allowed?(trip)
+    return true unless trip.order_cutoff
+    
+    DateTime.now < trip.order_cutoff if trip.order_cutoff
   end
 end
