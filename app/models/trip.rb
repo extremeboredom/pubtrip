@@ -1,5 +1,5 @@
 class Trip < ActiveRecord::Base
-  attr_accessible :date, :name, :pub_id, :date_date, :date_time, :order_cutoff
+  attr_accessible :date, :name, :pub_id, :date_date, :date_time, :order_cutoff_date, :order_cutoff_time
   attr_accessor :date_date, :date_time
   attr_accessor :order_cutoff_date, :order_cutoff_time
 

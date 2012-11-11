@@ -6,6 +6,12 @@
     </div>
   </div>
   <div class="control-group">
+    <%= f.label :pub_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select(:pub_id, Pub.all, :id, :name) %>
+    </div>
+  </div>
+  <div class="control-group">
     <%= f.label :date_date, 'Date', :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :date_date, 
@@ -22,9 +28,19 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :pub_id, :class => 'control-label' %>
+    <%= f.label :order_cutoff_date, 'Order Cutoff Date', :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select(:pub_id, Pub.all, :id, :name) %>
+      <%= f.text_field :order_cutoff_date, 
+                       :value => @trip.order_cutoff_date ? @trip.order_cutoff_date.strftime('%d/%m/%Y') : '', 
+                       :class => 'datepicker' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :order_cutoff_time, 'Order Cutoff Time', :class =>'control-label' %>
+    <div class="controls">
+      <%= f.text_field :order_cutoff_time,
+                       :value => @trip.order_cutoff_time ? @trip.order_cutoff_time.strftime('%H:%M') : '',
+                       :class => 'timepicker' %>
     </div>
   </div>
 
