@@ -25,7 +25,6 @@ $(function (){
     var theInput = $(this);
     theInput.timepicker({
       showInputs: false,
-      disableFocus: true,
       minuteStep: 1,
       showMeridian: false,
       defaultTime: theInput.attr('value')
