@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_filter :require_login
 
   def index
-    @orders = Order.joins(:attendee).where(:attendees => {trip_id: params[:trip_id]})
+    @orders = Order.joins(:attendee).where(:attendees => {trip_id: params[:trip_id]}).order(:notes)
 
     respond_to do |format|
       format.html
