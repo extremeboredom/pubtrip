@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
-  date: 2012-08-22
+first_trip:
+  name: First Trip
+  date: 2012-08-22 00:00:00
+  pub: generous_briton
+  organiser: test_user
 
-two:
-  name: MyString
-  date: 2012-08-22
+second_trip:
+  name: Second Trip
+  date: 2012-08-22 00:00:00
+  pub: malt_cross
+  organiser: test_user

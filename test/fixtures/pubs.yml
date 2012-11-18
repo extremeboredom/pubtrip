@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
+generous_briton:
+  name: Generous Briton
 
-two:
-  name: MyString
+malt_cross:
+  name: Malt Cross

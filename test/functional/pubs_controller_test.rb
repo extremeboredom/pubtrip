@@ -2,7 +2,7 @@ require 'test_helper'
 
 class PubsControllerTest < ActionController::TestCase
   setup do
-    @pub = pubs(:one)
+    @pub = pubs(:generous_briton)
   end
 
   test "should get index" do
