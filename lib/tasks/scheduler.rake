@@ -13,7 +13,7 @@ namespace :scheduler do
         url = trip_orders_url(trip, :host => ENV['APP_HOST'])
 
         order_lines = ''
-        trip.attendees.each do |attendee|
+        trip.attendees.joins(:order).order(:notes).each do |attendee|
           order_lines << "<tr><td>#{attendee.order.notes}</td><td>#{attendee.user.name}</td></tr>"
         end
 
