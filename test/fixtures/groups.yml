@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: Weatherford
+  user_id: 1
+
+two:
+  name: Weatherford Special Occasions
+  user_id: 1

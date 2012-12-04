@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :attendees
   has_many :organised_trips, :class_name => "Trip"
   has_many :trips, :through  => :attendees
+  has_many :owned_groups, :class_name => "Group"
   
   attr_accessible :first_name,
                   :last_name,
