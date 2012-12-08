@@ -6,4 +6,5 @@ class Member < ActiveRecord::Base
 
   validates_presence_of :group
   validates_presence_of :user
+  validates_uniqueness_of :user_id, scope: :group_id
 end

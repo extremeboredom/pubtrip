@@ -19,4 +19,12 @@ class MemberTest < ActiveSupport::TestCase
     member.user = users(:bob)
     assert member.valid?
   end
+
+  test "duplicate group and user combination is invalid" do
+    member = Member.new
+    member.group = groups(:wft)
+    member.user = users(:bob)
+    assert member.invalid?
+    assert_equal ["has already been taken"], member.errors[:user_id]
+  end
 end
