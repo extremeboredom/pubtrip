@@ -1,0 +1,19 @@
+<h1 class="page-header">Your Groups</h1>
+<% if @groups.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= "Name" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @groups.each do |group| %>
+        <tr>
+          <td><%= link_to group.name, group %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="lead">You don't own any groups right now.</p>
+<% end %>

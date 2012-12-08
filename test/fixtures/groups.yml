@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+wft:
   name: Weatherford
-  user_id: 1
+  owner: test_user
 
-two:
+wft_special:
   name: Weatherford Special Occasions
-  user_id: 1
+  owner: test_user
