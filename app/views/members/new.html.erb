@@ -2,8 +2,8 @@
 
 <%= form_for [@group, @member] do |f| %>
   <fieldset>
-    <%= f.label :user %>
-    <%= f.text_field :user %>
+    <%= f.label :user_email %>
+    <%= f.text_field :user_email %>
   </fieldset>
     <%= f.submit nil, :class => 'btn btn-primary' %>
 <% end %>
