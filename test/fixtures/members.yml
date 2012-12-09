@@ -1,9 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-test_user_wft:
-  group: wft
-  user: test_user
-
 bob_wft:
   group: wft
   user: bob

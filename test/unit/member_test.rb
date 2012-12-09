@@ -27,4 +27,13 @@ class MemberTest < ActiveSupport::TestCase
     assert member.invalid?
     assert_equal ["has already been taken"], member.errors[:user_id]
   end
+
+  test "owner of a group cannot also be a member" do
+    member = Member.new
+    group = groups(:wft)
+    member.group = group;
+    member.user = group.owner
+    assert member.invalid?, "The owner of a group cannot also be a member of it"
+    assert_equal ["is also the owner"], member.errors[:user]
+  end
 end
