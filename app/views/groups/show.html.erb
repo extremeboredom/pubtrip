@@ -1,3 +1,22 @@
 <div class="page-header">
   <h1><%= @group.name %></h1>
 </div>
+
+<% if @group.members.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>User</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @group.members.each do |member| %>
+        <tr>
+          <td><%= member.user.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="lead">There are no members of this group yet.</p>
+<% end %>

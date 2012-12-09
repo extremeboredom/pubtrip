@@ -66,6 +66,19 @@ class GroupsControllerTest < ActionController::TestCase
     assert_response :success
 
     assert_select 'h1', groups(:wft).name
+    assert_select 'table.table', 1
+    assert_select 'table tbody tr', 1
+  end
+
+  test "should now show table when there are no members of the group" do
+    @user = users(:test_user)
+    login_user
+
+    get :show, id: groups(:wft_special)
+    assert_response :success
+
+    assert_select 'h1', groups(:wft_special).name
+    assert_select 'p.lead', "There are no members of this group yet."
   end
 
   test "should not get index when logged out" do
