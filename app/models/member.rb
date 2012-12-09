@@ -12,4 +12,20 @@ class Member < ActiveRecord::Base
       record.errors.add attr, 'is also the owner' if record.group.owner == value
     end
   end
+
+  def user_email=(email)
+    user = User.find_by_email(email)
+    @user_email = email
+    self.user = user
+  end
+
+  def user_email
+    if @user_email
+      @user_email
+    elsif self.user
+      self.user.email
+    else
+      nil
+    end
+  end
 end
