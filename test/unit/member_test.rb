@@ -36,4 +36,32 @@ class MemberTest < ActiveSupport::TestCase
     assert member.invalid?, "The owner of a group cannot also be a member of it"
     assert_equal ["is also the owner"], member.errors[:user]
   end
+
+  test "user_email will set the user field" do
+    member = Member.new
+    member.user_email = users(:bob).email
+    assert_equal users(:bob), member.user
+  end
+
+  test "user_email will return the email of the user" do
+    member = Member.new
+    member.user = users(:bob)
+    assert_equal users(:bob).email, member.user_email
+  end
+
+  test "user_email will set user to nil if the email is incorrect" do
+    member = Member.new
+    user = users(:bob)
+    member.user = user
+    assert_equal user, member.user
+    member.user_email = 'invalid@example.com'
+    assert_nil member.user
+  end
+
+  test "user_email will return the last entered email even if the user is nil" do
+    member = Member.new
+    member.user_email = 'invalid@example.com'
+    assert_nil member.user
+    assert_equal 'invalid@example.com', member.user_email
+  end
 end
