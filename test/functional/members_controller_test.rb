@@ -31,4 +31,47 @@ class MembersControllerTest < ActionController::TestCase
     end
     assert_select 'input[type="submit"]'
   end
+
+  test "should not create member when logged out" do
+    group = groups(:wft_special)
+    assert_no_difference('Member.count') do
+      post :create, {
+        group_id: group,
+        member: { user_email: users(:bob) }
+      }
+    end
+
+    assert_redirected_to login_path
+  end
+
+  test "should not create member when not logged in as the group owner" do
+    group = groups(:wft_special)
+    @user = users(:bob)
+    login_user
+
+    assert_no_difference('Member.count') do
+      post :create, {
+        group_id: group,
+        member: { user_email: users(:bob) }
+      }
+    end
+
+    assert_redirected_to groups_path
+  end
+
+  test "should create member when logged in as the group owner" do
+    group = groups(:wft_special)
+    @user = group.owner
+    login_user
+
+    assert_difference('Member.count') do
+      post :create, {
+        group_id: group,
+        member: { user_email: users(:bob).email }
+      }
+    end
+
+    assert_redirected_to group
+  end
+
 end
