@@ -24,5 +24,6 @@ class GroupsController < ApplicationController
 
   def index
     @groups = current_user.owned_groups
+    @membered_groups = current_user.members.map { |m| m.group }
   end
 end

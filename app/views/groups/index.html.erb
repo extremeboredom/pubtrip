@@ -1,4 +1,4 @@
-<h1 class="page-header">Your Groups</h1>
+<h1 class="page-header">Groups you own</h1>
 <% if @groups.any? %>
   <table class="table">
     <thead>
@@ -16,4 +16,24 @@
   </table>
 <% else %>
   <p class="lead">You don't own any groups right now.</p>
+<% end %>
+
+<h1 class="page-header">Groups you belong to</h1>
+<% if @membered_groups.any? %>
+  <table id="belongs" class="table">
+    <thead>
+      <tr>
+        <th><%= "Name" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @membered_groups.each do |group| %>
+        <tr>
+          <td><%= link_to group.name, group %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="lead">You don't belong to any groups right now.</p>
 <% end %>

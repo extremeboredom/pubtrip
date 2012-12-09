@@ -93,11 +93,12 @@ class GroupsControllerTest < ActionController::TestCase
     get :index
     assert_response :success
 
-    assert_select 'h1.page-header', 'Your Groups'
+    assert_select 'h1.page-header', 'Groups you own'
     assert_select 'table.table'
     assert_select 'tbody tr', 2 do
       assert_select 'a'
     end
+    assert_select 'h1.page-header', 'Groups you belong to'
   end
 
   test "should not display table when the user does not own a group" do
@@ -107,8 +108,30 @@ class GroupsControllerTest < ActionController::TestCase
     get :index
     assert_response :success
 
-    assert_select 'h1.page-header', 'Your Groups'
-    assert_select 'table', false
+    assert_select 'h1.page-header', 'Groups you own'
+    assert_select 'table#owned', false
     assert_select 'p', "You don't own any groups right now."
+  end
+
+  test "should display message when the user does not belong to any groups" do
+    @user = users(:test_user)
+    login_user
+
+    get :index
+    assert_response :success
+
+    assert_select 'table#belongs', false
+    assert_select 'p.lead', "You don't belong to any groups right now."
+  end
+
+  test "should a table of groups that the user belongs to" do
+    @user = users(:bob)
+    login_user
+
+    get :index
+    assert_response :success
+
+    assert_select 'table#belongs'
+    assert_select 'table#belongs tbody tr', 1
   end
 end
