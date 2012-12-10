@@ -17,6 +17,7 @@
 <% else %>
   <p class="lead">You don't own any groups right now.</p>
 <% end %>
+<%= link_to 'Create a Group', new_group_path, :class => 'btn' %>
 
 <h1 class="page-header">Groups you belong to</h1>
 <% if @membered_groups.any? %>
