@@ -70,6 +70,16 @@ class GroupsControllerTest < ActionController::TestCase
     assert_select 'table tbody tr', 1
   end
 
+  test "should not show Add Member button when not group owner" do
+    @user = users(:bob)
+    login_user
+
+    get :show, id: groups(:wft)
+    assert_response :success
+
+    assert_select 'a.btn', { count: 0, text: 'Add a Member' }
+  end
+
   test "should now show table when there are no members of the group" do
     @user = users(:test_user)
     login_user

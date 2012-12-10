@@ -20,3 +20,6 @@
 <% else %>
   <p class="lead">There are no members of this group yet.</p>
 <% end %>
+<% if @group.owner == current_user %>
+  <%= link_to 'Add a Member', new_group_member_path(@group), :class => 'btn' %>
+<% end %>
