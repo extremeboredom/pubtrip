@@ -14,6 +14,10 @@ Pubtrip::Application.routes.draw do
     resources :orders
   end
 
+  resources :groups, only: [:new, :index, :create, :show] do
+    resources :members, only: [:new, :create]
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
