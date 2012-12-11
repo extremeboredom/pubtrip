@@ -10,3 +10,10 @@ test_user:
   crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("secret", salt) %>
   first_name: 'Test'
   last_name: 'User'
+
+bob:
+  email: bob@example.com
+  salt: <%= salt = "tescodastr4325234324sdfds" %>
+  crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("password", salt) %>
+  first_name: 'Bob'
+  last_name: 'Jackson'

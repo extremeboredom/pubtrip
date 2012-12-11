@@ -1,0 +1,7 @@
+<%= form_for @group do |f| %>
+  <fieldset>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </fieldset>
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+<% end %>

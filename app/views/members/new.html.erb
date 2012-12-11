@@ -1,0 +1,9 @@
+<h1 class="page-header">Add member to <%= @group.name %></h1>
+
+<%= form_for [@group, @member] do |f| %>
+  <fieldset>
+    <%= f.label :user_email %>
+    <%= f.text_field :user_email %>
+  </fieldset>
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+<% end %>
