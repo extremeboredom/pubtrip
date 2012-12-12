@@ -29,7 +29,8 @@ group :assets do
 
   gem 'bootstrap-sass'
   gem 'bootstrap-datepicker-rails'
-  gem 'bootstrap-timepicker-rails'
+  gem 'bootstrap-timepicker-rails', :require => 'bootstrap-timepicker-rails',
+                                    :git => 'git://github.com/tispratik/bootstrap-timepicker-rails.git'
 end
 
 gem 'jquery-rails'
