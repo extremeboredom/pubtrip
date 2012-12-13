@@ -42,4 +42,50 @@ class PasswordResetsControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
+  test "should reset password when updating the password reset" do
+    forgetful_user = users(:anthony)
+    forgetful_user_original_password = forgetful_user.crypted_password
+
+    put :update,  id: forgetful_user.reset_password_token,
+                  user: {
+                    password: 'MyNewPassword',
+                    password_confirmation: 'MyNewPassword'
+                  }
+
+    assert_not_nil assigns(:user)
+    assert_not_equal forgetful_user_original_password, assigns(:user).crypted_password
+    assert_nil assigns(:user).reset_password_token
+
+    assert_redirected_to root_path
+  end
+
+  test "should not reset password when updating the password reset with invalid confirmation" do
+    forgetful_user = users(:anthony)
+    forgetful_user_original_password = forgetful_user.crypted_password
+
+    put :update,  id: forgetful_user.reset_password_token,
+                  user: {
+                    password: 'MyNewPassword',
+                    password_confirmation: 'MyOtherPassword'
+                  }
+
+    assert_not_nil assigns(:user)
+    assert_equal forgetful_user_original_password, assigns(:user).crypted_password
+
+    assert_response :success
+  end
+
+  test "should not reset password with invalid token" do
+    put :update,  id: 'invalid_token',
+                  user: {
+                    password: 'MyNewPassword',
+                    password_confirmation: 'MyNewPassword'
+                  }
+
+    assert_nil assigns(:user)
+
+    assert_redirected_to login_path
+  end
+
+
 end
