@@ -27,9 +27,10 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 
-  gem 'twitter-bootstrap-rails'
+  gem 'bootstrap-sass'
   gem 'bootstrap-datepicker-rails'
-  gem 'bootstrap-timepicker-rails'
+  gem 'bootstrap-timepicker-rails', :require => 'bootstrap-timepicker-rails',
+                                    :git => 'git://github.com/tispratik/bootstrap-timepicker-rails.git'
 end
 
 gem 'jquery-rails'
