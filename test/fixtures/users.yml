@@ -17,3 +17,13 @@ bob:
   crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("password", salt) %>
   first_name: 'Bob'
   last_name: 'Jackson'
+
+anthony:
+  email: anthony@example.com
+  salt: <%= salt = "tescodaskj4325234324sdfds" %>
+  crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("password", salt) %>
+  first_name: 'Anthony'
+  last_name: 'Forgetful'
+  reset_password_token: 'resetme'
+  reset_password_token_expires_at: <%= DateTime.now + 1.day %>
+  reset_password_email_sent_at: <%= DateTime.now - 1.hour %>
