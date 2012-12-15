@@ -87,5 +87,9 @@ class PasswordResetsControllerTest < ActionController::TestCase
     assert_redirected_to login_path
   end
 
+  test "should get new" do
+    get :new
+    assert_response :success
+  end
 
 end

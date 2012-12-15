@@ -1,6 +1,6 @@
 Pubtrip::Application.routes.draw do
 
-  resources :password_resets, only: [:create, :edit, :update]
+  resources :password_resets, only: [:create, :edit, :update, :new]
 
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"

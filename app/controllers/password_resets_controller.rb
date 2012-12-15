@@ -19,7 +19,7 @@ class PasswordResetsController < ApplicationController
   def update
     @token = params[:id]
     @user = User.load_from_reset_password_token(@token)
-    
+
     if @user
       # the next line makes the password confirmation validation work
       @user.password_confirmation = params[:user][:password_confirmation]
@@ -32,5 +32,8 @@ class PasswordResetsController < ApplicationController
     else
       not_authenticated
     end
+  end
+
+  def new
   end
 end
