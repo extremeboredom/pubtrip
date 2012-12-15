@@ -60,7 +60,7 @@ class PasswordResetsControllerTest < ActionController::TestCase
   end
 
   test "should not reset password when updating the password reset with invalid confirmation" do
-    forgetful_user = users(:anthony)
+    forgetful_user = users(:ted)
     forgetful_user_original_password = forgetful_user.crypted_password
 
     put :update,  id: forgetful_user.reset_password_token,

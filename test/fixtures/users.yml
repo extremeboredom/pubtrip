@@ -28,6 +28,16 @@ anthony:
   reset_password_token_expires_at: <%= DateTime.now + 1.day %>
   reset_password_email_sent_at: <%= DateTime.now - 1.hour %>
 
+ted:
+  email: ted@example.com
+  salt: <%= salt = "tescodaskj4325234g24sdfds" %>
+  crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("password", salt) %>
+  first_name: 'Ted'
+  last_name: 'Forgetful'
+  reset_password_token: 'resetmetoo'
+  reset_password_token_expires_at: <%= DateTime.now + 1.day %>
+  reset_password_email_sent_at: <%= DateTime.now - 1.hour %>
+
 spencer:
   email: spencer@example.com
   salt: <%= salt = "tesuodastr4325234324sdfds" %>

@@ -1,6 +1,6 @@
 <h1 class="page-header">Reset Your Password</h1>
 
-<%= form_for @user, :url => password_reset_path(@user.reset_password_token), :html => {:method => :put} do |f| %>
+<%= form_for @user, :url => password_reset_path(@token), :html => {:method => :put} do |f| %>
   <legend>Choose a new Password</legend>
   <% if @user.errors.any? %>
     <div class="error_messages">
