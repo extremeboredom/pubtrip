@@ -32,3 +32,7 @@ rerun.txt
 pickle-email-*.html
 
 .env
+
+# Ignore RubyMine bits
+/.idea/workspace.xml
+/.idea/tasks.xml
