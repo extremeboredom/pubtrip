@@ -11,3 +11,10 @@ second_trip:
   date: 2012-08-22 00:00:00
   pub: malt_cross
   organiser: test_user
+
+expiring_trip:
+  name: Expiring Trip
+  date: 2012-09-02 00:00:00
+  pub: generous_briton
+  organiser: test_user
+  order_cutoff: 2012-09-01 00:00:00
