@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
+    order = Order.find(params[:id])
 
     respond_to do |format|
       format.html
@@ -34,6 +34,7 @@ class OrdersController < ApplicationController
     @order = Order.new(params[:order])
     @order.attendee = current_attendee(params[:trip_id])
 
+  if within_order_cutoff @order
     respond_to do |format|
       if @order.save
         format.html { redirect_to [@order.attendee.trip, @order], notice: 'Your order has been accepted' }
@@ -41,16 +42,28 @@ class OrdersController < ApplicationController
         format.html { render action: 'new' }
       end
     end
+  else
+    respond_to do |format|
+      format.html { redirect_to @order.attendee.trip, notice: 'Sorry, the order cutoff time has passed'}
+    end
+  end
+
   end
 
   def update
     @order = Order.find(params[:id])
 
-    respond_to do |format|
-      if @order.update_attributes(params[:order])
-        format.html { redirect_to [@order.attendee.trip, @order], notice: 'Your order has been updated' }
-      else
-        format.html { render action: 'edit' }
+    if within_order_cutoff @order
+      respond_to do |format|
+        if @order.update_attributes(params[:order])
+          format.html { redirect_to [@order.attendee.trip, @order], notice: 'Your order has been updated' }
+        else
+          format.html { render action: 'edit' }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to @order.attendee.trip, notice: 'Sorry, the order cutoff time has passed'}
       end
     end
   end
@@ -69,5 +82,11 @@ class OrdersController < ApplicationController
 
   def current_attendee(trip_id)
     Attendee.where(trip_id: trip_id, user_id: current_user).first
+  end
+
+  #Helpers
+
+  def within_order_cutoff(order)
+    order.attendee.trip.order_cutoff > DateTime.now
   end
 end

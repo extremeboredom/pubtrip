@@ -7,7 +7,7 @@
 expiring_trip_attendee:
   trip: expiring_trip
   user: bob
-# column: value
-#
-two: {}
-#  column: value
+
+ordered_expiring_trip_attendee:
+  trip: expiring_trip
+  user: spencer

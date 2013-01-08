@@ -17,6 +17,27 @@ class OrdersControllerTest < ActionController::TestCase
           trip_id: trip
       }
     end
+
+    assert_redirected_to trip_path(trip)
+  end
+
+  test "editing an order after the cutoff time should fail" do
+    @user = users(:spencer)
+    login_user
+
+    trip = trips(:expiring_trip)
+    order = orders(:spencer_order)
+
+    original_notes = order.notes
+
+    put :update, trip_id: trip,
+                 id: order,
+                 order: { notes: "Sausage, mash and mushy peas" }
+
+    assert_not_nil assigns(:order)
+    assert_equal original_notes, assigns(:order).notes
+
+    assert_redirected_to trip_path trip
   end
 
 end
