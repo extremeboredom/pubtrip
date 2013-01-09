@@ -11,3 +11,7 @@ expiring_trip_attendee:
 ordered_expiring_trip_attendee:
   trip: expiring_trip
   user: spencer
+
+unexpired_trip_attendee:
+  trip: unexpired_trip
+  user: bob

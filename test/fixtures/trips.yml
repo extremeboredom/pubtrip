@@ -18,3 +18,10 @@ expiring_trip:
   pub: generous_briton
   organiser: test_user
   order_cutoff: 2012-09-01 00:00:00
+
+unexpired_trip:
+  name: Unexpired Trip
+  date: <%= DateTime.now + 2.day %>
+  pub: generous_briton
+  organiser: test_user
+  order_cutoff: <%= DateTime.now + 1.day %>
