@@ -40,6 +40,8 @@ gem 'sorcery'
 
 gem 'mandrill-api'
 
+gem 'telegraph'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

@@ -19,4 +19,12 @@ module TripsHelper
     
     DateTime.now < trip.order_cutoff if trip.order_cutoff
   end
+
+  def display_name(trip, user)
+    display_name = user.name
+    if trip.name =~ /\w*Morse Code\w*/
+      display_name += " (#{Telegraph.text_to_morse user.name})"
+    end
+    display_name
+  end
 end
